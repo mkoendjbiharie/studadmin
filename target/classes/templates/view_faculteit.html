@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Lijst van faculteiten</h1>
+
+    <a href="/add_faculteit">Voeg nieuwe faculteit toe</a>
+</div>
+
+<div class="container-fluid">
+        <table class="table-bordered col-md-3">
+        <thead>
+            <th>Faculteit</th>
+            <th>acties</th>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${faculteitList}">
+                <td th:text="${item.getId()}">afkorting</td>
+                <td th:text="${item.getNaam()}">naam</td>
+                 <td>
+                    <a th:href="@{'/edit_faculteit/' + ${item.getId()}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete_faculteit/' + ${item.getId()}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

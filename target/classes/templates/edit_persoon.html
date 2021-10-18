@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+	<h1>Wijzigen persoonsgegevens</h1>
+</div>
+
+<div class="container">
+	<form action="#" th:action="@{/save}" th:object="${persoon}" method="post">
+		<table border="0" cellpadding="10">
+			<input type="hidden" th:field="*{id}" />
+			<tr>
+				<td>id nummer:</td>
+				<td><input type="text" th:field="*{idKaartNr}" /></td>
+			</tr>
+			<tr>
+				<td>naam:</td>
+				<td><input type="text" th:field="*{naam}"></td>
+			</tr>
+			<tr>
+				<td>eerste voornaam:</td>
+				<td><input type="text" th:field="*{voornaam1}"></td>
+			</tr>
+			<tr>
+				<td>tweede voornaam:</td>
+				<td><input type="text" th:field="*{voornaam2}"></td>
+			</tr>
+			<tr>
+				<td>geslacht:</td>
+				<td>
+					<select th:object="${geslachtList}" id="geslacht" name="geslacht">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${geslachtList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getGeslacht()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>burgelijke staat:</td>
+				<!--td><input type="text" th:field="*{burgelijkeStaat}"></td-->
+				<td>
+					<select th:object="${burgelijkestaatList}" id="burgelijkeStaat" name="burgelijkeStaat">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${burgelijkestaatList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getBurgelijkestaat()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td>gehuwde naam:</td>
+				<td><input type="text" th:field="*{gehuwdeNaam}"></td>
+			</tr>
+			<tr>
+				<td>nationaliteit:</td>
+				<!--td><input type="text" th:field="*{nationaliteit}"></td-->
+				<td>
+					<select th:object="${nationaliteitList}" id="nationaliteit" name="nationaliteit">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${nationaliteitList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getNationaliteit()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+
+			</tr>
+			<tr>
+				<td>geboorteland:</td>
+				<!--td><input type="text" th:field="*{geboorteLand}"></td-->
+				<td>
+					<select th:object="${geboortelandList}" id="geboorteland" name="geboorteland">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${geboortelandList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getGeboorteland()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>geboorteplaats:</td>
+				<td><input type="text" th:field="*{geboortePlaats}"></td>
+			</tr>
+			<tr>
+				<td>geboortedatum:</td>
+				<td><input type="date" pattern="dd/MM/yyyy" th:field="*{geboorteDatum}"></td>
+			</tr>
+			<tr>
+				<td>geloof:</td>
+				<td><input type="text" th:field="*{geloof}"></td>
+			</tr>
+			<tr>
+				<td>vooropleiding:</td>
+				<!--td><input type="text" th:field="*{voorOpleiding}"></td-->
+				<td>
+
+					<select th:object="${vooropleidingList}" id="vooropleiding" name="vooropleiding">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${vooropleidingList}"
+								th:value="${Item.getNaam()}"
+								th:selected="${Item.getId()}==${persoon.getVooropleiding()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+
+
+			</tr>
+			<tr>
+				<td>bevolkingsgroep:</td>
+				<!--td><input type="text" th:field="*{bevolkingsGroep}"></td-->
+				<td>
+					<select th:object="${bevolkingsroepList}" id="bevolkingsgroep" name="bevolkingsgroep">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${bevolkingsroepList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getBevolkingsgroep()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select><td>
+			</tr>
+
+				<td>woonplaats:</td>
+				<td><input type="text" th:field="*{woonplaats}"></td>
+			</tr>
+			<tr>
+				<td>district:</td>
+				<!--td><input type="text" th:field="*{district}"></td-->
+				<td>
+					<select th:object="${districtList}" id="district" name="district">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${districtList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getDistrict()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+
+			</tr>
+			<tr>
+				<td>wijk:</td>
+				<td><input type="text" th:field="*{wijk}"></td>
+			</tr>
+			<tr>
+				<td>straat:</td>
+				<!--td><input type="text" th:field="*{straat}"></td-->
+				<td>
+					<select th:object="${straatList}" id="straat" name="straat">
+						<option value="0">Kies een optie</option>
+						<option th:each="Item:${straatList}"
+								th:value="${Item.getId()}"
+								th:selected="${Item.getId()}==${persoon.getStraat()?.getId()}"
+								th:text="${Item.getNaam()}">
+						</option>
+					</select>
+				</td>
+
+			</tr>
+			<tr>
+				<td>huisnummer:</td>
+				<td><input type="text" th:field="*{huisNummer}"></td>
+			</tr>
+			<tr>
+				<td>telefoonnummer 1:</td>
+				<td><input type="text" th:field="*{telefoon1}"></td>
+			</tr>
+			<tr>
+				<td>telefoonnummer 2:</td>
+				<td><input type="text" th:field="*{telefoon2}"></td>
+			</tr>
+			<tr>
+				<td>telefoon werk:</td>
+				<td><input type="text" th:field="*{telefoonWerk}"></td>
+			</tr>
+			<tr>
+				<td>telefoon werk ext:</td>
+				<td><input type="text" th:field="*{telefoonWerkExtentie}"></td>
+			</tr>
+			<tr>
+				<td>telefoon contactpersoon:</td>
+				<td><input type="text" th:field="*{telefoonContactPersoon}"></td>
+			</tr>
+			<tr>
+				<td>email1:</td>
+				<td><input type="text" th:field="*{email1}"></td>
+			</tr>
+			<tr>
+				<td>email2:</td>
+				<td><input type="text" th:field="*{email2}"></td>
+			</tr>
+			<tr>
+				<td>bankrekeningnummer:</td>
+				<td><input type="text" th:field="*{bankRekeningNr}"></td>
+			</tr>
+			<tr>
+				<td>bank:</td>
+				<td><input type="text" th:field="*{bank}"></td>
+			</tr>
+			<tr>
+				<td>hobbies:</td>
+				<td><input type="text" th:field="*{hobbies}"></td>
+			</tr>
+			<tr>
+				<div class="btn-group">
+					<td colspan="2"><button type="submit" class="btn btn-primary">Save</button> </td>
+					<td colspan="2"><button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button> </td>
+				</div>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

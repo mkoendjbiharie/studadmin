@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="ne">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<!--div th:replace="fragments/header :: header">
+</div-->
+
+<div th:replace="fragments/navbar :: navbar">
+</div>
+
+<div class="jumbotron text-center">
+    <h3>Lijst van persoonsgegevens</h3>
+    <a href="new"><strong>Voeg nieuwe persoon toe</strong></a>
+</div>
+
+<div class="container-fluid table-responsive">
+        <table class="table table-bordered thead-light table-sm table-responsive text-sm-left form-group">
+        <thead>
+            <th>id</th>
+            <th>idKaartNr</th>
+            <th>naam</th>
+            <th>voornaam1</th>
+            <th>voornaam2</th>
+            <th>geslacht</th>
+            <th>burgelijke staat</th>
+            <th>gehuwde naam</th>
+            <th>nationaliteit</th>
+            <th>geboorteland</th>
+            <th>geboorteplaats</th>
+            <th>geboortedatum</th>
+            <th>geloof</th>
+            <th>voorOpleiding</th>
+            <th>bevolkingsGroep</th>
+            <th>woonplaats</th>
+            <th>district</th>
+            <th>wijk</th>
+            <th>straat</th>
+            <th>huisNummer</th>
+            <th>telefoon1</th>
+            <th>telefoon2</th>
+            <th>telefoonWerk</th>
+            <th>telefoonWerkExtentie</th>
+            <th>telefoonContactPersoon</th>
+            <th>email1</th>
+            <th>email2</th>
+            <th>bankRekeningNr</th>
+            <th>bank</th>
+            <th>hobbies</th>
+            <th>acties</th>
+        </thead>
+        <tbody>
+            <tr th:each="persoon: ${listPersoon}">
+            <td th:text="${persoon.id}">id</td>
+            <td th:text="${persoon.idKaartNr}">idnr</td>
+            <td th:text="${persoon.naam}">naam</td>
+            <td th:text="${persoon.voornaam1}">voornaam1</td>
+            <td th:text="${persoon.voornaam2}">voornaam2</td>
+            <td th:text="${persoon.geslacht?.getNaam()}">geslacht</td>
+            <td th:text="${persoon.getBurgelijkestaat()?.getNaam()}">burgelijke staat</td>
+            <td th:text="${persoon.gehuwdeNaam}">gehuwde naam</td>
+            <td th:text="${persoon.nationaliteit?.naam}">nationaliteit</td>
+            <td th:text="${persoon.getGeboorteland()?.naam}">geboorteland</td>
+            <td th:text="${persoon.getGeboortePlaats()}">geboorteplaats</td>
+            <td th:text="${persoon.getGeboorteDatum()}">geboortedatum</td>
+            <td th:text="${persoon.geloof}">geloof</td>
+            <td th:text="${persoon.vooropleiding?.naam}">vooropleiding</td>
+            <td th:text="${persoon.bevolkingsgroep?.naam}">bevolkingsgroep</td>
+            <td th:text="${persoon.woonplaats}">woonplaats</td>
+            <td th:text="${persoon.district?.naam}">district</td>
+            <td th:text="${persoon.wijk}">wijk</td>
+            <td th:text="${persoon.straat?.naam}">straat</td>
+            <td th:text="${persoon.huisNummer}">huisnummer</td>
+            <td th:text="${persoon.telefoon1}">telefoon 1</td>
+            <td th:text="${persoon.telefoon2}">telefoon 2</td>
+            <td th:text="${persoon.telefoonWerk}">telefoon werk</td>
+            <td th:text="${persoon.telefoonWerkExtentie}">telefoon werk extentie</td>
+            <td th:text="${persoon.telefoonContactPersoon}">telefoon contactpersoon</td>
+            <td th:text="${persoon.email1}">emailadres 1</td>
+            <td th:text="${persoon.email2}">emailadres 2</td>
+            <td th:text="${persoon.bankRekeningNr}">bankrekeningnummer</td>
+            <td th:text="${persoon.bank}">bank</td>
+            <td th:text="${persoon.hobbies}">hobbies</td>
+            <td>
+                <a th:href="@{'/edit/' + ${persoon.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${persoon.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer :: footer" >
+</div>
+
+</body>
+</html>

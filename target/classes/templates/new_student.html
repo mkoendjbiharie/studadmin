@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Student inschrijven</h1>
+</div>
+
+<div class="container">
+    <form action="#" th:action="@{/save_student}" th:object="${student}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>inschrijfjaar:</td>
+                <!--td><input type="text" th:field="*{inschrijfjaar}" th:value="${maxCollegejaar}"/></td-->
+                <td>
+                    <select th:object="${collegejaarList}" th:field="${student.collegejaar.id}"
+                            th:id="collegejaar" th:name="collegejaar">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${collegejaarList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getJaar()}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>persoon:</td>
+                <!--td><input type="text" th:field="*{persoonId}"></td-->
+                <td>
+                    <select th:object="${persoonList}" th:field="${student.persoon.id}" id="persoon" name="persoon">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${persoonList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNamenEnId()}">
+                        </option>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td>studierichting:</td>
+                <td>
+                    <select th:object="${studierichtingList}" th:field="${student.studierichting}"
+                            th:id="studierichting" th:name="studierichting">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${studierichtingList}"
+                                th:value="${Item.id}"
+                                th:text="${Item.getFaculteit()}+'-'+${Item.getNaam()}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <!--script type="text/javascript">
+                function getStudierichting() {
+                    const selectedRichting = document.getElementById("studierichting").value;
+                    const selectedJaar = document.getElementById("inschrijfjaar").value;
+                    document.getElementById("studentnr").value = selectedRichting+selectedJaar.substring(2,4);
+                }
+            </script-->
+            <!--input type="text" th:name="prmStudierichting"/-->
+            <tr>
+                <td>studentnummer:</td>
+                <td>
+                    <input id="studentnr" type="text" th:field="*{studentNr}"
+                    th:id="studentnr" th:name="studentnr"
+                    th:text="TESTING">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary">Save</button> </td>
+                <td colspan="2"><button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

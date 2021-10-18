@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Burgelijke Staat invoeren</h1>
+</div>
+
+<div class="container">
+    <form action="#" th:action="@{/save_burgelijkestaat}" th:object="${burgelijkestaat}" method="post">
+
+        <table border="0" cellpadding="10">
+                 <td><input type="hidden" th:field="*{id}" /></td>
+            <tr>
+                <td>burgelijke staat:</td>
+                <td><input type="text" th:field="*{naam}"></td>
+            </tr>
+             <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary">Save</button> </td>
+                <td colspan="2"><button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

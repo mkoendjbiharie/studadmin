@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Lijst van studenten</h1>
+
+    <a href="/add_student">Voeg nieuwe student toe</a>
+</div>
+
+<div class="container-fluid">
+        <table class="table-bordered col-md-3">
+        <thead>
+            <th>studentnr</th>
+            <th>inschrijfjaar</th>
+            <th>namen</th>
+            <th>studierichting</th>
+            <th>acties</th>
+        </thead>
+        <tbody>
+            <tr th:each="student: ${studentList}">
+                <td th:text="${student.studentNr}">studentnr</td>
+                <td th:text="${student.getCollegejaar()?.jaar}">inschrijfjaar</td>
+                <td th:text="${student.getNamen()}">namen</td>
+                <td th:text="${student.studierichting}">studierichting</td>
+                <td>
+                    <a th:href="@{'/edit_student/' + ${student.getStudentNr()}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete_student/' + ${student.getStudentNr()}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Lijst van districten</h1>
+
+    <a href="/add_district">Voeg nieuw district toe</a>
+</div>
+
+<div class="container-fluid">
+        <table class="table-bordered col-md-3">
+        <thead>
+            <th>District</th>
+            <th>acties</th>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${districtList}">
+            <!--td th:text="${item.getGeboorteLandId()}">id</td-->
+            <td th:text="${item.getNaam()}">district</td>
+             <td>
+                <a th:href="@{'/edit_district/' + ${item.getId()}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete_district/' + ${item.getId()}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragments/footer" >
+</div>
+
+</body>
+</html>

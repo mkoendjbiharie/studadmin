@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/head">
+</head>
+<body>
+
+<div th:replace="fragments/header">
+</div>
+
+<div th:replace="fragments/navbar">
+</div>
+
+<div class="jumbotron">
+    <h1>Persoonsgegevens invoeren</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-5" style="background: lightgray">
+        <div class="panel-body">
+            <form role="form-horizontal tasi-form" action="#" th:action="@{/save}" th:object="${persoon}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label>id nummer:</label>
+                    <input type="text" th:field="*{idKaartNr}"/>
+                </div>
+                <div class="form-group">
+                    <label></label>naam:</label>
+                    <input type="text" th:field="*{naam}">
+                </div>
+                <div class="form-group">
+                    <label>eerste voornaam:</label>
+                    <input type="text" th:field="*{voornaam1}">
+                </div>
+                <div class="form-group">
+                    <label>tweede voornaam:</label>
+                    <input type="text" th:field="*{voornaam2}">
+                </div>
+                <div class="form-group">
+                    <label>geslacht:</label>
+                    <select th:object="${geslachtList}" id="geslacht" name="geslacht">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${geslachtList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>burgelijke staat:</label>
+                    <!--td><input type="text" th:field="*{burgelijkeStaat}"></td-->
+                    <select th:object="${burgelijkeStaatList}" id="burgelijkeStaat" name="burgelijkeStaat">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${burgelijkeStaatList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>gehuwde naam:</label>
+                    <input type="text" th:field="*{gehuwdeNaam}">
+                </div>
+                <div class="form-group">
+                    <label>nationaliteit:</label>
+                    <!--td><input type="text" th:field="*{nationaliteit}"></td-->
+                    <select th:object="${nationaliteitList}" id="nationaliteit" name="nationaliteit">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${nationaliteitList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>geboorteland:</label>
+                    <!--td><input type="text" th:field="*{geboorteLand}"></td-->
+                    <select th:object="${geboortelandList}" id="geboorteland" name="geboorteland">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${geboortelandList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>geboorteplaats:</label>
+                    <input type="text" th:field="*{geboortePlaats}">
+                </div>
+                <div class="form-group">
+                    <label>geboortedatum:</label>
+                    <input type="date" pattern="dd/MM/yyyy" th:field="*{geboorteDatum}">
+                </div>
+                <div class="form-group">
+                    <label>geloof:</label>
+                    <input type="text" th:field="*{geloof}">
+                </div>
+                <div class="form-group">
+                    <label>vooropleiding:</label>
+                    <!--td><input type="text" th:field="*{voorOpleiding}"></td-->
+                    <select th:object="${vooropleidingList}" id="vooropleiding" name="vooropleiding">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${vooropleidingList}"
+                                th:value="${Item.getNaam()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>bevolkingsgroep:</label>
+                    <!--td><input type="text" th:field="*{bevolkingsGroep}"></td-->
+                    <select th:object="${bevolkingsroepList}" id="bevolkingsgroep" name="bevolkingsgroep">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${bevolkingsroepList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>woonplaats:</label>
+                    <input type="text" th:field="*{woonplaats}">
+                </div>
+                <div class="form-group">
+                    <label>district:</label>
+                    <!--td><input type="text" th:field="*{district}"></td-->
+                    <select th:object="${districtList}" id="district" name="district">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${districtList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>wijk:</label>
+                    <input type="text" th:field="*{wijk}">
+                </div>
+                <div class="form-group">
+                    <label>straat:</label>
+                    <!--td><input type="text" th:field="*{straat}"></td-->
+                    <select th:object="${straatList}" id="straat" name="straat">
+                        <option value="0">Kies een optie</option>
+                        <option th:each="Item:${straatList}"
+                                th:value="${Item.getId()}"
+                                th:text="${Item.getNaam()}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>huisnummer:</label>
+                    <input type="text" th:field="*{huisNummer}">
+                </div>
+                <div class="form-group">
+                    <label>telefoonnummer 1:</label>
+                    <input type="text" th:field="*{telefoon1}">
+                </div>
+                <div class="form-group">
+                    <label>telefoonnummer 2:</label>
+                    <input type="text" th:field="*{telefoon2}">
+                </div>
+                <div class="form-group">
+                    <label>telefoon werk:</label>
+                    <input type="text" th:field="*{telefoonWerk}">
+                </div>
+                <div class="form-group">
+                    <label>telefoon werk ext:</label>
+                    <input type="text" th:field="*{telefoonWerkExtentie}">
+                </div>
+                <div class="form-group">
+                    <label>telefoon contactpersoon:</label>
+                    <input type="text" th:field="*{telefoonContactPersoon}">
+                </div>
+                <div class="form-group">
+                    <label>email1:</label>
+                    <input type="text" th:field="*{email1}">
+                </div>
+                <div class="form-group">
+                    <label>email2:</label>
+                    <input type="text" th:field="*{email2}">
+                </div>
+                <div class="form-group">
+                    <label>bankrekeningnummer:</label>
+                    <input type="text" th:field="*{bankRekeningNr}">
+                </div>
+                <div class="form-group">
+                    <label>bank:</label>
+                    <input type="text" th:field="*{bank}">
+                </div>
+                <div class="form-group">
+                    <label>hobbies:</label>
+                    <input type="text" th:field="*{hobbies}">
+                </div>
+                <div class="form-group">
+                    <div class="btn-group">
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </td>
+                        <td colspan="2">
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel
+                            </button>
+                        </td>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer">
+</div>
+
+</body>
+</html>
